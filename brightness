@@ -1,0 +1,15 @@
+#!/bin/sh
+
+brightness_level="$(brightnessctl g)"
+brightness_max="$(brightnessctl m)"
+brightness_percent="$(( $brightness_level * 100 / $brightness_max ))"
+
+if [ "$brightness_percent" -ge 75 ]; then
+    icon="🌞"
+elif [ "$brightness_percent" -ge 50 ]; then
+    icon="🌗"
+else
+    icon="🌕"
+fi
+printf "%s %s%%", "$icon" "$brightness_percent"
+
